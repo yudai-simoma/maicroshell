@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   microshell.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:38:57 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/05/21 12:19:32 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/05/21 21:19:45 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h> // strcmp
-#include <unistd.h> // write, close, dup, dup2, close, execve, chdir and fork
-#include <sys/wait.h> // waitpid
-#include <stdlib.h> //malloc, free
-#include <signal.h> //kill, signal
+#include "microshell.h"
 
 /*
 - 実行可能ファイルのパスは絶対パスまたは相対パスです
@@ -37,8 +33,8 @@ i love my microshell
 $>
 
 TODO
-	・Tokenizer
-	・"/bin/pwd"の実行
+	済Tokenizer
+	済"/bin/pwd"の実行
 	・｜の実装
 	・；の実装
 	・cdの実装（ビルドイン）
@@ -51,33 +47,25 @@ TODO
 	・シグナル
 */
 
-/*
- * コマンドの実行関数
- *
- * /bin/ls -la -a
- */
-void	ft_put_execve(char *cmd, char **envp)
-{
-	char	*path_;
-	char	**args_;
-	int		end_;
-	int		i_;
-
-	end_ = 0;
-	while (cmd[end_] != '\0' || cmd[end_] != ' ' || cmd[end_] != '\t')
-		end_++;
-	if (execve(path, args, envp) < 0)
-	{
-		perror("execve error");
-		exit (EXIT_FAILURE);
-	}
-}
-
 int	main(int argc, char **argv, char **envp)
 {
 	envp = NULL;
 	argc = 0;
+	char	**args_;
+	int		pipefd_[2];
+	pid_t	pid_;
 
-	ft_put_execve(argv[1], envp);
+	args_ = ft_tokenizer(argc, argv);
+	ft_put_execve(args_, envp);
+	pipe(pipefd_);
+	pid_ = fork();
+	// if (pid_ == 0)
+	// {
+		
+	// }
+	// else
+	// {
+		
+	// }
 	return (0);
 }
