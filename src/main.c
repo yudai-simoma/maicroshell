@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:38:57 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/05/21 21:19:45 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/05/22 20:52:46 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ $>
 TODO
 	済Tokenizer
 	済"/bin/pwd"の実行
-	・｜の実装
-	・；の実装
+	済｜の実装
 	・cdの実装（ビルドイン）
 	・リードラインループ
 	・リダイレクション
@@ -45,27 +44,33 @@ TODO
 	・パーサー
 	・スペースパラメータ
 	・シグナル
+	・；の実装
 */
+
+int	ft_get_fork_count(char *str)
+{
+	int	count;
+	int	i;
+
+	i = 0;
+	count = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '|')
+			count++;
+		i++;
+	}
+	return (count);
+}
 
 int	main(int argc, char **argv, char **envp)
 {
+	t_shell	shell_;
+
 	envp = NULL;
 	argc = 0;
-	char	**args_;
-	int		pipefd_[2];
-	pid_t	pid_;
-
-	args_ = ft_tokenizer(argc, argv);
-	ft_put_execve(args_, envp);
-	pipe(pipefd_);
-	pid_ = fork();
-	// if (pid_ == 0)
-	// {
-		
-	// }
-	// else
-	// {
-		
-	// }
+	shell_.args = ft_tokenizer(argc, argv);
+	shell_.fork_count = ft_get_fork_count(argv[1]) + 1;
+	ft_pipe(&shell_, envp);
 	return (0);
 }

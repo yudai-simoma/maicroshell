@@ -6,13 +6,13 @@
 #    By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 11:35:21 by yshimoma          #+#    #+#              #
-#    Updated: 2023/05/21 18:14:18 by yshimoma         ###   ########.fr        #
+#    Updated: 2023/05/22 20:51:17 by yshimoma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = microshell
 SRCS_DIR = ./src
-SRCS = main.c tokenizer.c put_execve.c
+SRCS = main.c tokenizer.c put_execve.c pipe.c
 vpath %.c ${SRCS_DIR}
 OBJ_DIR	= ./obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
