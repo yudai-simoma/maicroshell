@@ -2,3 +2,4 @@
 *.d
 microshell
 *.a
+*.dSYM
