@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 12:49:46 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/05/22 20:50:46 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/05/30 18:47:44 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <signal.h> //kill, signal
 # include <stdio.h>
 # include "libft.h"
+// # include "get_next_line_bonus.h"
 
 # define RED_COLOR "\033[31m"
 # define RESET_COLOR "\033[0m"
