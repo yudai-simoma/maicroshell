@@ -6,12 +6,19 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 20:41:48 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/05/22 20:50:50 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/05/30 21:02:08 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "microshell.h"
 
+/*
+ * cmd | cmd | cmd ...
+ * で使用可能
+ * 
+ * TODO:上記を以下のように変更する
+ * cmd|
+ */
 void	ft_pipe(t_shell *shell, char **envp)
 {
 	int	i_;

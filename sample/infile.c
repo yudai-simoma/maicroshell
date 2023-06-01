@@ -11,7 +11,7 @@
  * cat < test.txt
  * cat << eof
  * 
- * cc infile.c ../get_next_line/get_next_line_bonus.c ../get_next_line/get_next_line_utils_bonus.c -o infile
+ * cc infile.c ../libft/libft.a ../get_next_line/get_next_line_bonus.c ../get_next_line/get_next_line_utils_bonus.c -o infile
  */
 void ft_in_file(char *file_path)
 {

@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:38:57 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/05/30 20:18:40 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/05/30 21:03:11 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ int	ft_get_fork_count(char *str)
 	}
 	return (count);
 }
+
+/*
+ *  リダイレクトの処理を書く
+ */
 
 int	main(int argc, char **argv, char **envp)
 {
