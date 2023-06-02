@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 12:49:46 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/05/30 18:47:44 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/06/02 19:40:57 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h> //malloc, free
 # include <signal.h> //kill, signal
 # include <stdio.h>
+# include <stdbool.h>
 # include "libft.h"
 // # include "get_next_line_bonus.h"
 
@@ -32,7 +33,9 @@ typedef struct s_shell
 	char	***args;
 	int		pipefd[2];
 	pid_t	pid;
-	int		fork_count;
+	int		pipe_count;
+	int		*input_redirect_count;
+	int		*output_redirect_count;
 }	t_shell;
 
 //put_execve.c
@@ -41,5 +44,7 @@ void	ft_put_execve(char **args, char **envp);
 char	***ft_tokenizer(int argc, char **argv);
 //pipe.c
 void	ft_pipe(t_shell *shell, char **envp);
+//cmd.c
+void	ft_cmd(t_shell *shell, char **execve_str, char **envp);
 
 #endif

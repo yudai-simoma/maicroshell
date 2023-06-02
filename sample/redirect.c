@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 /*
- * >, >>
+ * >
  */
 void ft_file_write(char *file_path, char *str)
 {
@@ -20,6 +20,9 @@ void ft_file_write(char *file_path, char *str)
 	close(fd);
 }
 
+/*
+ * >>
+ */
 void ft_file_over_write(char *file_path, char *str)
 {
 	int	fd;
@@ -36,7 +39,6 @@ void ft_file_over_write(char *file_path, char *str)
 
 int main()
 {
-
 	ft_file_write("./test.txt", "ccc\n");
 	ft_file_over_write("./test2.txt", "eee\n");
 }

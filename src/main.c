@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:38:57 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/05/30 21:03:11 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/06/02 19:59:32 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,34 +47,63 @@ TODO
 	・；の実装
 */
 
-int	ft_get_fork_count(char *str)
+int	ft_get_count(char *str, t_shell *shell)
 {
-	int	count;
 	int	i;
+	int j;
 
 	i = 0;
-	count = 0;
+	shell->pipe_count = 0;
 	while (str[i] != '\0')
 	{
 		if (str[i] == '|')
-			count++;
+			shell->pipe_count++;
 		i++;
 	}
-	return (count);
+	shell->pipe_count = shell->pipe_count;
+	shell->input_redirect_count = ft_calloc(shell->pipe_count, sizeof(int));
+	shell->output_redirect_count = ft_calloc(shell->pipe_count, sizeof(int));
+	i = 0;
+	j = 0;
+	shell->input_redirect_count[j] = 0;
+	shell->output_redirect_count[j] = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '<')
+			shell->input_redirect_count[j]++;
+		else if (str[i] == '>')
+			shell->output_redirect_count[j]++;
+		else if (str[i] == '|')
+			j++;
+		i++;
+	}
+	return (0);
 }
 
 /*
+ * TODO:
  *  リダイレクトの処理を書く
+ *  <, <<, 単体, パイプあり
+ *  >, >>, 単体, パイプあり
  */
-
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	shell_;
+	int		i_;
 
 	envp = NULL;
 	argc = 0;
 	shell_.args = ft_tokenizer(argc, argv);
-	shell_.fork_count = ft_get_fork_count(argv[1]) + 1;
-	ft_pipe(&shell_, envp);
+	ft_get_count(argv[1], &shell_);
+	i_ = 0;
+	// 以下は、<の実装
+
+	// 以下6行は、cmd | cmd の実装
+	// while (i_ < shell_.pipe_count)
+	// {
+	// 	ft_cmd(&shell_, shell_.args[i_], envp);
+	// 	i_++;
+	// }
+	// ft_put_execve(shell_.args[i_], envp);
 	return (0);
 }
