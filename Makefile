@@ -6,7 +6,7 @@
 #    By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/18 11:35:21 by yshimoma          #+#    #+#              #
-#    Updated: 2023/06/02 18:24:53 by yshimoma         ###   ########.fr        #
+#    Updated: 2023/06/03 21:07:58 by yshimoma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ NAME_LIBFT = /libft.a
 INCLUDE = ./header
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
+READLINE = -L/Users/yshimoma/.brew/opt/readline/lib -I/Users/yshimoma/.brew/opt/readline/include -lreadline
+# READLINE = -lreadline
 RM = rm -rf
 
 all: ${NAME}
@@ -31,15 +33,15 @@ all: ${NAME}
 
 ${NAME}: ${OBJS} ${DEPS}
 	$(MAKE) bonus -C ${LIBFT_DIR}
-	${CC} -I${INCLUDE} ${LIBFT_DIR}${NAME_LIBFT} ${OBJS} -o $@
+	${CC} ${CFLAGS}  ${READLINE} -I${INCLUDE} ${LIBFT_DIR}${NAME_LIBFT} ${OBJS} -o $@
 
 ${OBJ_DIR}/%.o:%.c
 	mkdir -p ${OBJ_DIR}
-	${CC} ${CFLAGS} -I${INCLUDE} -c $< -o $@
+	${CC} -I${INCLUDE} -c $< -o $@
 
 ${DEP_DIR}/%.d:%.c
 	mkdir -p ${DEP_DIR}
-	${CC} ${CFLAGS} -I${INCLUDE} -M $< > $@
+	${CC} -I${INCLUDE} -M $< > $@
 
 clean:
 	$(MAKE) clean -C ${LIBFT_DIR}

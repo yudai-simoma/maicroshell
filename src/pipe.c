@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 20:41:48 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/05/30 21:02:08 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:47:25 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,24 @@ void	ft_pipe(t_shell *shell, char **envp)
 	int	i_;
 
 	i_ = 0;
-	while (i_ < shell->fork_count)
+	while (i_ < shell->pipe_count)
 	{
-		if (i_ + 1 != shell->fork_count)
+		if (i_ + 1 != shell->pipe_count)
 			pipe(shell->pipefd);
 		shell->pid = fork();
 		if (shell->pid == 0)
 		{
 			close(shell->pipefd[READ]);
-			if (i_ + 1 != shell->fork_count)
+			if (i_ + 1 != shell->pipe_count)
 				dup2(shell->pipefd[WRITE], STDOUT_FILENO);
 			close(shell->pipefd[WRITE]);
-			ft_put_execve(shell->args[i_], envp);
+			// ft_put_execve(shell->args[i_], envp);
+			envp = NULL;
 		}
 		else
 		{
 			close(shell->pipefd[WRITE]);
-			if (i_ + 1 != shell->fork_count)
+			if (i_ + 1 != shell->pipe_count)
 				dup2(shell->pipefd[READ], STDIN_FILENO);
 			else
 				close(shell->pipefd[READ]);
@@ -48,7 +49,7 @@ void	ft_pipe(t_shell *shell, char **envp)
 		i_++;
 	}
 	i_ = 0;
-	while (i_ < shell->fork_count)
+	while (i_ < shell->pipe_count)
 	{
 		wait(NULL);
 		i_++;
