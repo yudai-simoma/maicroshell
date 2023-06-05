@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:38:57 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/06/03 20:46:13 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/06/05 20:37:16 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,28 +112,26 @@ int	main(int argc, char **argv, char **envp)
 	argc = 0;
 	while (true)
 	{
-		line = readline("> ");
+		line = readline(MAGENTA_COLOR "shimoshell 🐷 " RESET_COLOR);
 		if (line == NULL)// || strlen(line) == 0)
 		{
 			free(line);
 			break ;
 		}
-		printf("line is '%s'\n", line);
 		add_history(line);
+
+		shell_.args = ft_tokenizer(line);
+		ft_get_count(line, &shell_);
+		i_ = 0;
+		// 以下6行は、cmd | cmd の実装
+		while (i_ < shell_.pipe_count)
+		{
+			ft_pipe_cmd(&shell_, i_, envp);
+			i_++;
+		}
+		ft_cmd(&shell_, i_, envp);
+
 		free(line);
 	}	
-	shell_.args = ft_tokenizer(argc, argv);
-	ft_get_count(argv[1], &shell_);
-	i_ = 0;
-	// 以下は、<の実装
-	// redirect.cを参考に行う。
-
-	// 以下6行は、cmd | cmd の実装
-	while (i_ < shell_.pipe_count)
-	{
-		ft_pipe_cmd(&shell_, i_, envp);
-		i_++;
-	}
-	ft_cmd(&shell_, i_, envp);
 	return (0);
 }

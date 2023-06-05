@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 12:49:46 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/06/03 20:43:17 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/06/05 20:36:36 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 // # include "get_next_line_bonus.h"
 
 # define RED_COLOR "\033[31m"
+# define MAGENTA_COLOR "\033[35m"
 # define RESET_COLOR "\033[0m"
 
 # define READ 0
@@ -38,7 +39,6 @@
 # define OVER_OUT_FILE 2
 # define IN_FILE 3
 # define ERR_OUT_FILE 4
-
 
 typedef struct s_shell
 {
@@ -54,7 +54,7 @@ typedef struct s_shell
 //put_execve.c
 void	ft_put_execve(t_shell *shell, int index, char **envp);
 //tokenizer.c
-char	***ft_tokenizer(int argc, char **argv);
+char	***ft_tokenizer(char *line);
 //pipe.c
 void	ft_pipe(t_shell *shell, char **envp);
 //cmd.c

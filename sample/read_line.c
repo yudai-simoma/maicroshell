@@ -1,7 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <readline/history.h>
 #include <readline/readline.h>
-#include <stdlib.h>
 
 int	main(void)
 {
@@ -14,19 +14,18 @@ int	main(void)
 		printf("No input received.\n");
 		return (0);
 	}
-	// 読み取った行を履歴に追加する
+	// 履歴に行を追加
 	add_history(line);
 	// readline関数が表示するプロンプトの行を変更する
 	rl_replace_line("Replaced line", 0);
 	// 行の変更を画面に表示する
 	rl_redisplay();
-	// 履歴をクリアする
-	rl_clear_history();
 	// 新しい行の開始を示す
 	rl_on_new_line();
-	// 終了前にもう一度プロンプトを表示する
-	line = readline("> ");
-	free(line); // readline()関数によって割り当てられたメモリを解放する
+	// rl_redisplay()の後でprintf()を使って行を表示
+	printf("\n%s\n", line);
+	// readline()関数によって割り当てられたメモリを解放する
+	free(line);
 	return (0);
 }
 

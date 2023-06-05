@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:40:52 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/06/03 15:07:29 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/06/05 20:37:43 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	ft_put_execve(t_shell *shell, int index, char **envp)
 
 	// file_path = ft_set_path(args[0], getenv("PATH"));
 	// TODO:getenvで$PATHを渡す
-	printf("ft_put_execve type = %d, index = %d\n", shell->cmd_type[index], index);
+	// printf("ft_put_execve type = %d, index = %d\n", shell->cmd_type[index], index);
 	if (shell->cmd_type[index] == OUT_FILE)
 	{
 		file_path = _ft_get_redirect_path(shell->args[index]);
