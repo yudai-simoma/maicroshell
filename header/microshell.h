@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 12:49:46 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/06/05 20:36:36 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:06:45 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_shell
 
 //put_execve.c
 void	ft_put_execve(t_shell *shell, int index, char **envp);
+void	ft_end_execve(t_shell *shell, int index, char **envp);
 //tokenizer.c
 char	***ft_tokenizer(char *line);
 //pipe.c

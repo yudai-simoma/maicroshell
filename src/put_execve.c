@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:40:52 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/06/05 20:37:43 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:10:05 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ char	**_ft_get_execve_path(char **args)
 
 /*
  * コマンドの実行関数
+ * パイプあり
  *
  * TODO:コマンドのパスを探す。リーク確認。エラー処理
  * /bin/ls -l
@@ -119,5 +120,46 @@ void	ft_put_execve(t_shell *shell, int index, char **envp)
 	{
 		perror("execve error");
 		exit (EXIT_FAILURE);
+	}
+}
+
+/*
+ * コマンドの実行関数
+ * パイプなし
+ *
+ * TODO:コマンドのパスを探す。リーク確認。エラー処理
+ * /bin/ls -l
+ */
+void	ft_end_execve(t_shell *shell, int index, char **envp)
+{
+	char	*file_path;
+	char	**cmd_str;
+
+	// file_path = ft_set_path(args[0], getenv("PATH"));
+	// TODO:getenvで$PATHを渡す
+	// printf("ft_put_execve type = %d, index = %d\n", shell->cmd_type[index], index);
+	if (shell->cmd_type[index] == OUT_FILE)
+	{
+		file_path = _ft_get_redirect_path(shell->args[index]);
+		printf("file_path = %s\n", file_path);
+		ft_out_file(file_path);
+		cmd_str = _ft_get_execve_path(shell->args[index]);
+	}
+	// else if (shell->cmd_type[index] == OVER_OUT_FILE)
+	// else if (shell->cmd_type[index] == IN_FILE)
+	else if (shell->cmd_type[index] == NORMAL)
+	{
+		cmd_str = shell->args[index];
+	}
+	file_path = _ft_set_path(shell->args[index][0], "/bin");
+	printf("file_path = %s\n", file_path);
+	for (int i = 0; i < 2; i++)
+		printf("cmd_str[%d] = %s\n", i, cmd_str[i]);
+	if (file_path == NULL)
+		return ;
+	if (execve(file_path, cmd_str, envp) < 0)
+	{
+		perror("execve error\n");
+		// exit (EXIT_FAILURE);
 	}
 }

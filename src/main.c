@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:38:57 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/06/05 20:37:16 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:17:12 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,11 @@ int	main(int argc, char **argv, char **envp)
 		line = readline(MAGENTA_COLOR "shimoshell 🐷 " RESET_COLOR);
 		if (line == NULL)// || strlen(line) == 0)
 		{
+			printf("bbbbbbb\n");
 			free(line);
 			break ;
 		}
+		int fd = dup(STDIN_FILENO);
 		add_history(line);
 
 		shell_.args = ft_tokenizer(line);
@@ -130,8 +132,10 @@ int	main(int argc, char **argv, char **envp)
 			i_++;
 		}
 		ft_cmd(&shell_, i_, envp);
-
+		printf("aaaaaaaaa\n");
 		free(line);
+		dup2(fd, STDIN_FILENO);
+		close(fd);
 	}	
 	return (0);
 }
