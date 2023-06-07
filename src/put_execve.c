@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 17:40:52 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/06/06 20:10:05 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/06/07 19:11:03 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,14 +152,11 @@ void	ft_end_execve(t_shell *shell, int index, char **envp)
 		cmd_str = shell->args[index];
 	}
 	file_path = _ft_set_path(shell->args[index][0], "/bin");
-	printf("file_path = %s\n", file_path);
-	for (int i = 0; i < 2; i++)
-		printf("cmd_str[%d] = %s\n", i, cmd_str[i]);
 	if (file_path == NULL)
 		return ;
 	if (execve(file_path, cmd_str, envp) < 0)
 	{
 		perror("execve error\n");
-		// exit (EXIT_FAILURE);
+		exit (EXIT_FAILURE);
 	}
 }

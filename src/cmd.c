@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 18:22:33 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/06/06 20:12:47 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/06/07 19:09:04 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,9 @@ void	ft_cmd(t_shell *shell, int index, char **envp)
 	if (shell->pid == 0)
 	{
 		ft_end_execve(shell, index, envp);
-		printf("hoghog\n");
 	}
 	else
 	{
 		wait(NULL);
-		printf("hoehoe\n");
 	}
 }
