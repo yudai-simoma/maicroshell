@@ -5,3 +5,4 @@ microshell
 *.dSYM
 *.out
 test*
+!testfiles
