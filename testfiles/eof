@@ -1,0 +1,103 @@
+
+
+echo ファイル実行のテスト
+
+
+echo ビルドインのテスト
+
+
+echo その他のテスト
+bash a
+bash .
+bash ..
+bash ;
+
+echo ファイル実行のテスト
+
+
+echo ビルドインのテスト
+
+
+echo その他のテスト
+bash a
+bash .
+bash ..
+bash ;
+
+echo ファイル実行のテスト
+
+
+echo ビルドインのテスト
+
+
+echo その他のテスト
+bash a
+bash .
+bash ..
+bash ;$HOME
+eof
+cat >> "eof"
+$HOME
+eof
+cat >> 'eof'
+$HOME
+eof
+
+echo ----------
+
+
+echo ファイル実行のテスト
+
+
+echo ビルドインのテスト
+
+
+echo その他のテスト
+bash a
+bash .
+bash ..
+bash ;$HOME
+eof
+cat >> "eof"
+$HOME
+eof
+cat >> 'eof'
+$HOME
+eof
+
+echo ----------
+
+
+echo ファイル実行のテスト
+
+
+echo ビルドインのテスト
+
+
+echo その他のテスト
+bash a
+bash .
+bash ..
+bash ;$HOME
+
+cat >> "eof"
+$HOME
+
+cat >> 'eof'
+$HOME
+
+
+echo ----------
+
+
+echo ファイル実行のテスト
+
+
+echo ビルドインのテスト
+
+
+echo その他のテスト
+bash a
+bash .
+bash ..
+bash ;

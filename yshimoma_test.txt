@@ -1,6 +1,0 @@
-echo cmdテスト
-
-echo hoghog
-ls
-ls -l
-
