@@ -1,17 +1,41 @@
 echo パイプのテスト
+echo -----start-----
 
+echo "echo aa> test.txt | ls" > test.txt | ls
+cat test.txt
+echo "echo bb> test.txt | ls" > test.txt | cat
+cat test.txt
+
+echo -----end-----
 
 echo アウトファイルのテスト
+echo -----start-----
 
+echo -----end-----
 
 echo インファイルのテスト
+echo -----start-----
 
+echo -----end-----
 
 echo コマンドのテスト
+echo -----start-----
 
+/bin/ls
+
+echo "test-1-1" > test.txt "test-1-2" > test.txt
+echo "test-2-1" >> test.txt "test-2-2" > test.txt
+echo "test-3-1" > test.txt "test-3-2" >> test.txt
+echo "test-4-1" >> test.txt "test-4-2" >> test.txt
+echo "test-5-1" > "test-5-2" > test.txt 
+echo "test-6-1" >> "test-6-2" > test.txt 
+echo "test-7-1" > "test-7-2" >> test.txt 
+echo "test-8-1" >> "test-8-2" >> test.txt 
+
+echo -----end-----
 
 echo 環境変数のテスト
-echo ----------
+echo -----start-----
 
 cat << eof
 $HOME
@@ -22,18 +46,49 @@ eof
 cat << 'eof'
 $HOME
 eof
- 
-echo ----------
+
+echo "$HOME"
+echo "$HOME1"
+echo "$HOME@"
+
+export A=ls
+$A
+'$A'
+"$A"
+
+A="cho a"
+e$A
+
+
+echo -----end-----
 
 
 echo ファイル実行のテスト
+echo -----start-----
 
+echo -----end-----
 
 echo ビルドインのテスト
+echo -----start-----
 
+echo -----end-----
 
 echo その他のテスト
+echo -----start-----
+
 bash a
 bash .
 bash ..
 bash ;
+
+     ls | cat
+
+echo a
+echo -n a
+echo -nnn -nnnnn a
+
+notcommand
+echo $_
+echo $?
+
+echo -----end-----
